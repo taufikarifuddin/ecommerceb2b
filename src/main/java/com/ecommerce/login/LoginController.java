@@ -49,7 +49,7 @@ public class LoginController {
 	}
 	
 	private LoginResponse loginHandler(String email,String password,boolean isAdminLogin,HttpServletResponse response){
-//		System.out.println(email+" "+password+"  komponennya");
+
 		Member member =  memberDAO.login(email, password, isAdminLogin);
 		
 		LoginResponse loginResponse = new LoginResponse();		

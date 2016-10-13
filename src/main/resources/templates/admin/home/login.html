@@ -13,7 +13,7 @@
 		  <div class="login-box-body" ng-controller="loginController">
 		    <p class="login-box-msg">Sign in to login</p>
 		    <form ng-submit="submit()">
-				<div class="alert alert-{{status}} alert-dismissible" ng-hide="{{ errorLogin }}">
+				<div class="alert alert-{{status}} alert-dismissible" ng-if="errorLogin">
 	                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
 					{{ message }}
 	            </div>		
@@ -29,7 +29,10 @@
 			      <div class="row">
 			        <!-- /.col -->
 			        <div class="col-xs-12">
-			          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+			          <button type="submit" ng-disabled="form.email == null || form.email == ''" class="btn btn-primary btn-block btn-flat">
+				            <img ng-if="loggedIn" src="/images/ajax-loader.gif"/>			          
+					        <span ng-if="!loggedIn">Login</span>				            
+			          </button>
 			        </div>
 			        <!-- /.col -->
 			      </div>
