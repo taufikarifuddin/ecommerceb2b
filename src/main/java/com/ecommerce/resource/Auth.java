@@ -6,7 +6,7 @@ import java.sql.Date;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
-import com.ecommerce.member.Member;
+import com.ecommerce.dao.member.Member;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -40,7 +40,6 @@ public class Auth {
                 .setIssuer(issuer)
                 .signWith(signatureAlgorithm, signingKey)
                 .claim(Constant.USER_ROLE_PARAMS, user.member_rolemember_role_id)
-                .claim(Constant.USER_VERIFIED_PARAMS, user.member_is_verified)
                 .claim(Constant.USER_EMAIL_PARAMS, user.member_email_address)
                 .claim(Constant.USER_NAME_PARAMS, user.member_name);
 
@@ -78,7 +77,6 @@ public class Auth {
 	    		member.member_name = ( String ) dataJwt.get(Constant.USER_NAME_PARAMS);
 	    		member.member_email_address = ( String ) dataJwt.get(Constant.USER_EMAIL_PARAMS);	    		
 	    		member.member_rolemember_role_id = ( int ) dataJwt.get(Constant.USER_ROLE_PARAMS);
-	    		member.member_is_verified = ( int ) dataJwt.get(Constant.USER_VERIFIED_PARAMS);    		
 	    		return member;
     		}catch (NullPointerException e) {
     			e.printStackTrace();
